@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -46,13 +41,13 @@ and open the template in the editor.
                 border: 1px solid black;
             }
             .head{
-                background-color: #cccccc;
+                background-color: #a2c4c9;
             }
             .statusErr {
-                background-color: #e58080;
+                background-color: #e06666;
             }
             .statusOk {
-                background-color: #95e580;
+                background-color: #93c47d;
             }
             .emptyString {
                 height: 10px;
@@ -66,12 +61,12 @@ and open the template in the editor.
         <div class="block">
             <?php require ('function.php'); ?>
             <h3>Check robots.txt</h3>
+            
             <form method="post">
                   <p><input type="text" title="" name="url"></p>
                   <input type="submit" name="check" value="check">
                       <?php if (isset($table)):?>
-                  <input type="hidden" name="saveUrl" value="<?php echo $url;?>">
-                  <input type="submit" name="save" value="Save">
+                  <input type="button" value="Save" onclick="window.location = 'report.xlsx';">
                       <?php endif;?>
             </form>
             <br>
@@ -109,28 +104,6 @@ and open the template in the editor.
         </tr>
             <?php endfor;?>
                 <?php endif;?>
-    <!--<tr><td colspan="5"  class="emptyString"></td></tr>empty string
-            <tr>
-                <td class="nomber" rowspan="2">1</td>
-                <td class="CheckName" rowspan="2">Проверка наличия файла robots.txt</td>
-                <td class="statusErr" rowspan="2">Ошибка</td>
-                <td class="empty">Состояние
-                    <td>Файл robots.txt отсутствует</td>
-                    <tr>
-                        <td>Рекомендации</td>
-                        <td>Программист: Создать файл robots.txt и разместить его на сайте.</td>
-                    </tr>
-                </td>
-            </tr>-->
         </table>
-        <?php //endif;?>
     </body>
 </html>
-<!--<table>
-                        <tr>
-                            <td>khk,jbjiuh</td>
-                        </tr>
-                        <tr>
-                            <td>khk,jbjiuh</td>
-                        </tr>
-                    </table>-->
