@@ -59,16 +59,20 @@
     </head>
     <body>
         <div class="block">
-            <?php require ('function.php'); ?>
+            <?php require ('function.php');?>
             <h3>Check robots.txt</h3>
             
             <form method="post">
                   <p><input type="text" title="" name="url"></p>
                   <input type="submit" name="check" value="check">
-                      <?php if (isset($table)):?>
-                  <input type="button" value="Save" onclick="window.location = 'report.xlsx';">
-                      <?php endif;?>
             </form>
+            <br>
+            <?php if (isset($table)):?>
+            <form action="download.php" method="POST">
+                <input type="hidden" name="url" value="<?php echo $url;?>">
+                <input type="submit" value="Save">
+            </form>
+             <?php endif;?>
             <br>
             <?php echo isset($url) ? $url : false;?>
         </div>
