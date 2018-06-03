@@ -71,11 +71,9 @@ require_once 'Classes/PHPExcel.php';//Сторонняя библиотека
                     $MySheet->mergeCells('A'.($c+2).':E'.($c+2));
                     $c+=3;
             }
-            
-            $objWriter = PHPExcel_IOFactory::createWriter($Excel, 'Excel5');
-            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            header('Content-Disposition: attachment;filename=simple.xlsx');
-            header('Cache-Control: max-age=0');
+            header('Content-Type:xlsx:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition:attachment;filename="RobotsReport.xlsx"');
+            $objWriter = new PHPExcel_Writer_Excel2007($Excel);
             $objWriter->save('php://output');
 }
 ?>
