@@ -1,4 +1,15 @@
 <?php $start = microtime(true);?>
+<!--
+
+# robots
+check exist robots.txt
+Проверка наличия файла robots.txt
+Проверка указания директивы Host
+Проверка размера файла robots.txt
+Проверка указания директивы Sitemap
+Проверка кода ответа сервера для файла robots.txt
+
+-->
 <!DOCTYPE html>
 <html>
     <head>

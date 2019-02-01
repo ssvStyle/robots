@@ -15,6 +15,7 @@
         function checkUrl($url) {//check and raplase url
             $regExp = '~^(http://|https://)(www.)?(([a-z0-9]([-a-z0-9]*[a-z0-9]+)?){1,63}\.)+[a-z]{2,6}$~';
             switch ($url){
+                
                 case preg_match($regExp, $url) && checkResponse($url):
                     return $url.'/robots.txt';
                 break;
@@ -34,6 +35,7 @@
                 case preg_match($regExp, 'http://www.'.$url) && checkResponse('http://www.'.$url):
                     return 'http://www.'.$url.'/robots.txt';
                 break;
+            
             default :
                 return false;
             }
