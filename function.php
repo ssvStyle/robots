@@ -7,34 +7,48 @@
                 if($url === false){
                     echo 'Invalid url!!!';
                 } else {
-                    //$check = file_get_contents($url);
                     $table = checkRobots($url);
                 }
             }
         }
      
-    function checkUrl($url) {//check and raplase url
-        $regExp = '~^(http://|https://)(www.)?(([a-z0-9]([-a-z0-9]*[a-z0-9]+)?){1,63}\.)+[a-z]{2,6}$~';
-            if (preg_match($regExp, $url)){
-                $check = get_headers($url.'/robots.txt');
-                if (preg_match('~200~', $check[0])){
+        function checkUrl($url) {//check and raplase url
+            $regExp = '~^(http://|https://)(www.)?(([a-z0-9]([-a-z0-9]*[a-z0-9]+)?){1,63}\.)+[a-z]{2,6}$~';
+            switch ($url){
+                case preg_match($regExp, $url) && checkResponse($url):
                     return $url.'/robots.txt';
-                } else {
-                    return $url.'/robots.txt';
-                }
-            } else if (preg_match($regExp, 'http://'.$url)){
-                foreach(array('https://', 'https://www.', 'http://', 'http://www.') as $http)  {
-                    $check = get_headers($http.$url.'/robots.txt');
-                           if (preg_match('~200~', $check[0])){
-                               $url = $http.$url.'/robots.txt';
-                           }
-                    }
-                    return $url;
-           } else {
+                break;
+            
+                case preg_match($regExp, 'https://'.$url) && checkResponse('https://'.$url):
+                    return 'https://'.$url.'/robots.txt';
+                break;
+            
+                case preg_match($regExp, 'https://www.'.$url) && checkResponse('https://www.'.$url):
+                    return 'https://www.'.$url.'/robots.txt';
+                break;
+                
+                case preg_match($regExp, 'http://'.$url) && checkResponse('http://'.$url):
+                    return 'http://'.$url.'/robots.txt';
+                break;
+            
+                case preg_match($regExp, 'http://www.'.$url) && checkResponse('http://www.'.$url):
+                    return 'http://www.'.$url.'/robots.txt';
+                break;
+            default :
                 return false;
-           }
+            }
         }
-    function checkRobots($url) {
+        
+        function checkResponse($url) {
+            $check = get_headers($url.'/robots.txt');
+                if (preg_match('~200~', $check[0])){
+                    return TRUE;
+                } else {
+                    return FALSE;
+                }
+        }
+        
+        function checkRobots($url) {
         $result = get_headers($url);
         //file exist?
         if (preg_match('~200~', $result[0])){

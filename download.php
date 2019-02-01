@@ -2,8 +2,8 @@
 
 require_once 'function.php';
 
-$url = checkUrl($_POST['url']);
-$table = checkRobots($url);
+$table = checkRobots($_POST['url']);
+
 if (isset($table)){
 
 require_once 'Classes/PHPExcel.php';//Сторонняя библиотека

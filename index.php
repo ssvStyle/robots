@@ -1,3 +1,4 @@
+<?php $start = microtime(true);?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,7 +62,7 @@
         <div class="block">
             <?php require ('function.php');?>
             <h3>Check robots.txt</h3>
-            
+           
             <form method="post">
                   <p><input type="text" title="" name="url"></p>
                   <input type="submit" name="check" value="check">
@@ -109,5 +110,9 @@
             <?php endfor;?>
                 <?php endif;?>
         </table>
+        
+        <br><br><br><br><br>
+        <?php echo 'Время выполнения скрипта: '.round(microtime(true) - $start, 4).' сек.'; ?>
+        <br><br><br><br><br>
     </body>
 </html>
